@@ -169,8 +169,7 @@ const Jump: React.FC<JumpProps> = ({ onClose }) => {
     if (!isJumping && !isInAir && isPlaying) {
       setIsJumping(true);
       setIsInAir(true);
-      setJumpHeight(8);
-      setHorizontalOffset(12);
+      setJumpHeight(6);
       
       // Jump animation sequence
       setTimeout(() => {

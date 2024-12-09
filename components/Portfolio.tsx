@@ -8,7 +8,7 @@ import ExperienceSection from './ExperienceSection';
 import EducationSection from './EducationSection';
 import SkillsSection from './SkillsSection';
 import AchievementsSection from './AchievementsSection';
-import TicTacToe from './TicTacToe';
+import TicTacToe from './JumpGame';
 import RippleButton from './RippleButton';
 
 const Portfolio = () => {
