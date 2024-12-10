@@ -8,13 +8,13 @@ import ExperienceSection from './ExperienceSection';
 import EducationSection from './EducationSection';
 import SkillsSection from './SkillsSection';
 import AchievementsSection from './AchievementsSection';
-import TicTacToe from './JumpGame';
+import Jump from './JumpGame';
 import RippleButton from './RippleButton';
 
 const Portfolio = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [showTicTacToe, setShowTicTacToe] = useState(false);
+  const [showJump, setShowJump] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const CLICKS_NEEDED = 3;
 
@@ -35,7 +35,7 @@ const Portfolio = () => {
       setClickCount((prev) => {
         const newCount = prev + 1;
         if (newCount >= CLICKS_NEEDED) {
-          setShowTicTacToe(true);
+          setShowJump(true);
           return 0; // Reset count after revealing the game
         }
         return newCount;
@@ -184,8 +184,8 @@ const Portfolio = () => {
         />
       </main>
 
-      {/* Hidden Tic-Tac-Toe game */}
-      {showTicTacToe && <TicTacToe onClose={() => setShowTicTacToe(false)} />}
+      {/* Hidden Jump game */}
+      {showJump && <Jump onClose={() => setShowJump(false)} />}
     </div>
   );
 };

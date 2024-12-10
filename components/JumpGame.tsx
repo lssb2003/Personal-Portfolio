@@ -192,7 +192,7 @@ const Jump: React.FC<JumpProps> = ({ onClose }) => {
   };
 
   const gameLoop = (timestamp: number) => {
-    if (!isPlaying) return;
+    if (!isPlaying){ return};
 
     if (lastTimeRef.current === 0) {
       lastTimeRef.current = timestamp;

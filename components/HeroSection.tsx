@@ -20,6 +20,7 @@ const HeroSection = () => {
             Computer Science Student at NUS
           </h2>
           
+          {/* github, linkedin, email links */}
           <div className="flex justify-center gap-4 md:gap-8 mb-6 md:mb-8">
             <a 
               href="https://github.com/lssb2003" 
@@ -45,6 +46,7 @@ const HeroSection = () => {
             </a>
           </div>
           
+          {/* phone number */}
           <p className="text-text font-medium">
             <span className="inline-block bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-content 
                            px-4 py-2 rounded-full transform hover:scale-105 transition-all duration-300 
