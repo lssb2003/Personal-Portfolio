@@ -141,6 +141,7 @@ const Jump: React.FC<JumpProps> = ({ onClose }) => {
   const obstacleRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
+  const jumpLockRef = useRef<boolean>(false); // New ref to track jump lock state
 
   const getObstacleDetails = (type: 'single' | 'double' | 'triple'): { width: number; height: number } => {
     switch (type) {
@@ -162,37 +163,52 @@ const Jump: React.FC<JumpProps> = ({ onClose }) => {
   };
 
   const jump = () => {
-    // Only allow jump if:
-    // 1. Game is playing
-    // 2. Not currently jumping animation
-    // 3. Not in the air from a previous jump
-    if (!isJumping && !isInAir && isPlaying) {
+    // Only allow jump if not already jumping/in air, not locked, and game is active
+    if (!isJumping && !isInAir && isPlaying && !jumpLockRef.current) {
+      jumpLockRef.current = true; // Lock jumping
       setIsJumping(true);
       setIsInAir(true);
       setJumpHeight(6);
-      
+  
       // Jump animation sequence
       setTimeout(() => {
         setJumpHeight(0);
-        // Only reset horizontal offset after character has landed
         setTimeout(() => {
           setHorizontalOffset(0);
-          setIsInAir(false); // Allow next jump only after landing
+          setIsInAir(false);
           setIsJumping(false);
+          jumpLockRef.current = false; // Unlock jumping
         }, 300);
       }, 500);
     }
   };
+  
 
   const handleKeyPress = (event: KeyboardEvent) => {
-    if ((event.code === 'Space' || event.code === 'ArrowUp') && isPlaying) {
-      event.preventDefault();
+    // Prevent unintended default actions
+    event.preventDefault();
+  
+    // Handle spacebar (jump)
+    if ((event.code === 'Space' || event.code === 'ArrowUp') && isPlaying && !event.repeat) {
       jump();
     }
+  
+    // Restart game only with specific keys (e.g., Enter or R)
+    if ((event.code === 'Enter' || event.code === 'KeyR') && isGameOver) {
+      startGame();
+    }
   };
+  
+  const handleKeyRelease = (event: KeyboardEvent) => {
+    // Do nothing for spacebar release to prevent game reset
+    if (event.code === 'Space' || event.code === 'ArrowUp') {
+      return;
+    }
+  };
+  
 
   const gameLoop = (timestamp: number) => {
-    if (!isPlaying){ return};
+    if (!isPlaying) return;
 
     if (lastTimeRef.current === 0) {
       lastTimeRef.current = timestamp;
@@ -236,16 +252,21 @@ const Jump: React.FC<JumpProps> = ({ onClose }) => {
     setObstacleX(400);
     setIsJumping(false);
     setHorizontalOffset(0);
+    setIsInAir(false); // Ensure the character is grounded on restart
+    jumpLockRef.current = false; // Reset jump lock
     generateNewObstacle();
     lastTimeRef.current = 0;
-    
+  
+    // Remove any existing keydown listener before adding a new one
+    window.removeEventListener('keydown', handleKeyPress);
+    window.addEventListener('keydown', handleKeyPress);
+  
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
     animationFrameRef.current = requestAnimationFrame(gameLoop);
-    
-    window.addEventListener('keydown', handleKeyPress);
   };
+  
 
   const endGame = () => {
     setIsPlaying(false);
@@ -255,16 +276,17 @@ const Jump: React.FC<JumpProps> = ({ onClose }) => {
       cancelAnimationFrame(animationFrameRef.current);
     }
   };
-
+  
   useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('keyup', handleKeyRelease);
+  
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
       window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('keyup', handleKeyRelease);
     };
-  }, []);
-
+  }, [isPlaying, isGameOver]); // Dependencies
+  
   const renderObstacle = () => {
     switch (obstacleType) {
       case 'single':
