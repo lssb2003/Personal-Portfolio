@@ -57,7 +57,7 @@ const Portfolio = () => {
     {
       title: 'AI Journal App',
       description: 'Full-stack application using Ruby on Rails, PostgreSQL, and React, deployed on AWS. Enhances journal entries using ChatGPT turbo 3.5.',
-      link: 'http://18.142.252.250',
+      link: 'http://3.0.78.91',
       tech: ['Ruby on Rails', 'PostgreSQL', 'React', 'AWS', 'Linux/Unix', 'OpenAI']
     },
     {
