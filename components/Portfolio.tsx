@@ -57,7 +57,7 @@ const Portfolio = () => {
     {
       title: 'AI Journal App',
       description: 'Full-stack application using Ruby on Rails, PostgreSQL, and React, deployed on AWS. Enhances journal entries using ChatGPT turbo 3.5.',
-      link: 'http://18.136.103.117',
+      link: 'http://54.255.234.221',
       tech: ['Ruby on Rails', 'PostgreSQL', 'React', 'AWS', 'Linux/Unix', 'OpenAI']
     },
     {
@@ -65,6 +65,12 @@ const Portfolio = () => {
       description: 'Deep learning application for automatic brain-tumour diagnosis using PyTorch and CNNs. Built and optimized CNNs for medical image classification, including data augmentation and custom data pipelines.',
       link: 'https://brain-tumor-classification-fcp97dnqcz8aqestfjbkww.streamlit.app/',
       tech: ['Python', 'PyTorch', 'CNNs', 'Streamlit', 'Jupyter Notebook']
+    },
+    {
+      title: 'University Forum',
+      description: 'A comprehensive university forum system featuring hierarchical categories, advanced moderation capabilities, and sophisticated role-based access control.',
+      link: 'http://52.221.200.135/',
+      tech: ['Typescript', 'Ruby on Rails', 'PostgreSQL', 'AWS', 'NGINX', 'Tailwindcss', 'TanStack Query']
     }
   ];
 
