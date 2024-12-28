@@ -137,14 +137,12 @@ const Portfolio = () => {
       'Flask',
       'Ruby on Rails',
       'PostgreSQL',
-      'AWS EC2',
+      'AWS',
       'Docker',
       'Git',
-      'XGBoost', 
       'TensorFlow', 
       'Transformers',
-      'Tailwind CSS'
-
+      'Jupyter Notebook'
     ],
     certifications: ['AWS Certified Cloud Practitioner']
   };
