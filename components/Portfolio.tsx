@@ -75,16 +75,16 @@ const Portfolio = () => {
   ];
 
   const experiences = [
-    {
-      title: 'AI Engineer Intern',
-      company: 'Prudential (Singapore)',
-      period: 'Jun 2024 - Aug 2024',
-      points: [
-        'Optimized predictive models for customer segmentation using neural networks',
-        'Improved segmentation efficiency by 15%',
-        'Collaborated on integrating chatbot AI solution with NLP libraries'
-      ]
-    },
+    // {
+    //   title: 'AI Engineer Intern',
+    //   company: 'Prudential (Singapore)',
+    //   period: 'Jun 2024 - Aug 2024',
+    //   points: [
+    //     'Optimized predictive models for customer segmentation using neural networks',
+    //     'Improved segmentation efficiency by 15%',
+    //     'Collaborated on integrating chatbot AI solution with NLP libraries'
+    //   ]
+    // },
     {
       title: 'Data Entry and Customer Service Support',
       company: 'ICA (Singapore)',
@@ -131,7 +131,7 @@ const Portfolio = () => {
   };
 
   const skills = {
-    programmingLanguages: ['Python', 'Java', 'Javascript'],
+    programmingLanguages: ['Python', 'Java', 'Javascript', 'Typescript', 'Ruby', 'C++'],
     technologies: [
       'React',
       'Flask',
