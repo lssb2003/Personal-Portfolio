@@ -144,7 +144,7 @@ const Portfolio = () => {
       'Transformers',
       'Jupyter Notebook'
     ],
-    certifications: ['AWS Certified Cloud Practitioner']
+    certifications: ['AWS Certified Cloud Practitioner', 'AWS Certified Solutions Architect - Associate']
   };
 
   return (
